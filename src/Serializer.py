@@ -46,8 +46,4 @@ class Serializer(object):
                                 
 
                                             
-s = Serializer()
-s.unserialize_json("../data/installation/installation.json")
-for ins in s.collection:
-    print(ins)
 

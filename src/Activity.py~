@@ -1,0 +1,19 @@
+import sqlite3
+
+class Activity :
+"""
+class representing an activity
+has 10 characteristics, 10 have been selected
+all of thems are Strings
+"""
+def __init__(self,INSEECode,nameTown,equipementId,nbOfIdenticalEquip,actCode,actName, equActivitePraticable,equActivitePratique,equActiviteSalleSpe,actNivLib):
+    self.INSEECode = INSEECode
+    self.nameTown = nameTown
+    self.equipementId = equipementId
+    self.nbOfIdenticalEquip = nbOfIdenticalEquip
+    self.actCode = actCode
+    self.actName = actName
+    self.equActivitePraticable = equActivitePraticable
+    self.equActivitePratique = equActivitePratique
+    self.equActiviteSalleSpe = equActiviteSalleSpe
+    self.actNivLib = actNivLib
