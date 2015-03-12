@@ -1,5 +1,6 @@
 # ProjetPython
-Projet Python IUT module M4105c
+Projet Python IUT module M4105c par Dimitri Saingre
+Professeur : SALIM Soufian
 
 l'objectif de ce projet est de développer une application manipulants des données relatives aux installations sportives de la région Pays de la Loire.
 
@@ -22,4 +23,10 @@ Les données sont présentes ici :
 - Utilisation d'un style de programmation conforme à [pep-0008](https://www.python.org/dev/peps/pep-0008/)
 - Code en anglais
 - Utiliser la programmation orientée objet
+
+##Modules complémentaires :
+Deux modules externes sont utilisés dans ce projet :
+- [Cherrypy](https://github.com/cherrypy/cherrypy) : un framework web python
+- [ProgressBar](https://github.com/coagulant/progressbar-python3) : un utilitaire permettant de faire des barres de progression dans le terminal
+
 
