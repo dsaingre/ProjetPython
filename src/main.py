@@ -4,6 +4,7 @@ from Database import Database as Db
 from progressbar import ProgressBar as Progress
 
 def main():
+
     """
     seri = Seri()
     progr = Progress()
@@ -20,13 +21,16 @@ def main():
     for i in progr(seri.collection):
         db.insertion_activity(i)
 
-    """
+        """
     seri = Seri()
     progr = Progress()
     seri.unserialize_json_installation("../data/installation/installation.json")
     db = Db("../DB/DB.db")
     for i in progr(seri.collection):
         db.insertion_installation(i)
-    """
 
     db.disconnect()
+    """
+
+if __name__ == "__main__":
+    main()

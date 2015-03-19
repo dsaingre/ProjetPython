@@ -1,8 +1,9 @@
 # ProjetPython
 Projet Python IUT module M4105c par Dimitri Saingre
+
 Professeur : SALIM Soufian
 
-l'objectif de ce projet est de développer une application manipulants des données relatives aux installations sportives de la région Pays de la Loire.
+L'objectif de ce projet est de développer une application manipulants des données relatives aux installations sportives de la région Pays de la Loire.
 
 Les données sont présentes ici :
 * [Installations] (http://data.paysdelaloire.fr/donnees/detail/equipements-sportifs-espaces-et-sites-de-pratiques-en-pays-de-la-loire-fiches-installations/)
