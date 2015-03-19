@@ -1,0 +1,11 @@
+### gitignore ProjetPython ###
+
+# Data folder and useless folders
+data/
+__pycache__/
+
+
+# garbage 
+*.py~
+*.html~
+
