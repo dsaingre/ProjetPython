@@ -2,6 +2,7 @@
 
 # Data folder and useless folders
 data/
+cherrypy/
 __pycache__/
 
 

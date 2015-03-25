@@ -1,0 +1,42 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html"/>
+
+<%block name="header">
+<a href="index"><h1>Installations sportives des Pays de la Loire</h1></a>
+Résultats de la requête sur la table Installation
+</%block>
+
+
+<table border=1>
+  <tr>
+    <td>Numéro</td>
+    <td>Code postal</td>
+    <td>Commune</td>
+    <td>Numéro de rue</td>
+    <td>Nom de rue</td>
+    ##On omet longitude et latitude (inutile en tant que tel..)
+    <td>Accès handicapés</td>
+    <td>Accès personne à mobilité réduite</td>
+    <td>Accès personne avec handicap sensoriel</td>
+  </tr>
+  % for item in array:
+  <tr>
+    ## numero
+    <td>${item[0]}</td> 
+    ## CP
+    <td>${item[1]}</td> 
+    ## Commune
+    <td>${item[2]}</td> 
+    ## num rue
+    <td>${item[3]}</td> 
+    ## Nom rue
+    <td>${item[4]}</td> 
+    ## acces hand
+    <td>${item[7]}</td> 
+    ## acces mob red
+    <td>${item[8]}</td> 
+    ## acces hand sensoriels
+    <td>${item[9]}</td> 
+  </tr>
+  % endfor
+</table>

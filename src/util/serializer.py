@@ -5,9 +5,9 @@
 # Author : Dimitri SAINGRE 
 
 import json 
-from dao.Installation import Installation as Install
-from dao.Activity import Activity as Acty
-from dao.Equipment import Equipment as Equip
+from bean.installation import Installation as Install
+from bean.activity import Activity as Acty
+from bean.equipment import Equipment as Equip
 
 
 class Serializer(object):
@@ -30,7 +30,6 @@ class Serializer(object):
             json_data = json.load(json_file)
             for installation in json_data["data"]:
                 self.collection.append(Install(installation["InsNumeroInstall"],
-                                               installation["InsNom"],
                                                installation["InsCodePostal"],
                                                installation["ComLib"],
                                                installation["InsNoVoie"],
@@ -63,6 +62,3 @@ class Serializer(object):
                 self.collection.append(Equip(equipment["EquipementId"],
                                              equipment["EquNom"].replace('"',"'"),
                                              equipment["InsNumeroInstall"]))
-
-                                            
-

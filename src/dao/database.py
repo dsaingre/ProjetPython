@@ -40,7 +40,7 @@ class Database:
         Method used to create the table Activity. Erase existing table. 
         """
         self.c.execute('''DROP TABLE IF EXISTS Activity''')
-        self.c.execute('''CREATE TABLE Activity (act_code TEXT PRIMARY KEY,
+        self.c.execute('''CREATE TABLE Activity (act_code TEXT,
         act_name TEXT, eq_num TEXT REFERENCES Equipment(eq_num))''')
 
     def creation_table_equipment(self):
@@ -57,17 +57,16 @@ class Database:
         inst : Installation - The object to insert
         """
         self.c.execute('''INSERT INTO Installation VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",
-        \"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\")'''.format(inst.install_num,
-                                                                    inst.install_name,
-                                                                    inst.postal_code,
-                                                                    inst.town_name,
-                                                                    inst.street_num,
-                                                                    inst.street_name,
-                                                                    inst.longitude,
-                                                                    inst.latitude,
-                                                                    inst.no_access_arrang,
-                                                                    inst.access_low_mob_hand,
-                                                                    inst.access_sens_hand))
+        \"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\")'''.format(inst.install_num,
+                                                           inst.postal_code,
+                                                           inst.town_name,
+                                                           inst.street_num,
+                                                           inst.street_name,
+                                                           inst.longitude,
+                                                           inst.latitude,
+                                                           inst.no_access_arrang,
+                                                           inst.access_low_mob_hand,
+                                                           inst.access_sens_hand))
 
 
     def insertion_activity(self, act):
@@ -90,3 +89,45 @@ class Database:
                            eq.eq_name,
                            eq.install_num))
 
+
+    def read_installation(self):
+        """
+        Method used to select all elements in Installation table.
+        Return an array with Installation object
+        """
+        res = self.c.execute('''SELECT * FROM Installation''')
+        return res.fetchall() 
+
+    def read_equipment(self):
+        """
+        Method used to select all elements in Equipment table.
+        Return an array with Equipment object
+        """
+        res = self.c.execute('''SELECT * FROM Equipment''')
+        return res.fetchall()
+
+    def read_activity(self):
+        """
+        Method used to select all elements in Activity table
+        Return an array with Activity object
+        """
+        res = self.c.execute('''SELECT * FROM Activity''')
+        return res.fetchall()
+
+
+    def attribute_installation_to_array(self,attribute):
+        """
+        Method used to obtain an array which contain all elements for a given attribute
+        Return an array with all the elements for the attribute given in parameters
+        """
+        res = self.c.execute('''SELECT {} FROM Installation'''.format(attribute))
+        return res.fetchall()
+
+
+    def select_installation_tuple_from_pk(self, key):
+        """
+        Method used to select a tuple from Installation with the primary key
+        Return a tuple from Installation table
+        """
+        res = self.c.execute('''SELECT * FROM Installation WHERE install_num={}'''.format(key))
+        return res.fetchone()

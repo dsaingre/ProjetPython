@@ -1,0 +1,26 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html"/>
+
+<%block name="header">
+<a href="index"><h1>Installations sportives des Pays de la Loire</h1></a>
+Résultats de la requête sur la table Activité
+</%block>
+
+
+<table border=1>
+  <tr>
+    <td>Code de l'activité</td>
+    <td>Nom de l'activité</td>
+    <td>Numéro d'équipement</td>
+  </tr>
+  % for item in array:
+  <tr>
+    ## code
+    <td>${item[0]}</td> 
+    ## nom
+    <td>${item[1]}</td> 
+    ## num eq
+    <td>${item[2]}</td>  
+  </tr>
+  % endfor
+</table>
