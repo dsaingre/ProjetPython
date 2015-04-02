@@ -8,44 +8,55 @@
 Ce site présente diverses données portant sur les installations sportives des Pays de la Loire.<br/>
 
 <p>
-  Pour consulter l'ensemble des installations <a href="show_installation">cliquez ici</a><br/>
-  Pour consulter l'ensemble des équipements <a href="show_equipment">cliquez ici</a><br/>
-  Pour consulter l'ensemble des activités <a href="show_activity">cliquez ici</a><br/>
+  Pour consulter l'ensemble des installations, <a href="show_installation">cliquez ici</a><br/>
+  Pour consulter l'ensemble des équipements, <a href="show_equipment">cliquez ici</a><br/>
+  Pour consulter l'ensemble des activités, <a href="show_activity">cliquez ici</a><br/>
+</p>
+<p>
+  Pour effectuer une recherche, <a href="search">cliquez ici</a>
 </p>
 
 <h2>Exemple d'installation présente dans les Pays de la Loire</h2>
-<div class="tuple_installation">
-<table border=1>
-  <tr>
-    <td>Numéro</td>
-    <td>Code postal</td>
-    <td>Commune</td>
-    <td>Numéro de rue</td>
-    <td>Nom de rue</td>
-    ##On omet longitude et latitude (inutile en tant que tel..)
-    <td>Accès handicapés</td>
-    <td>Accès personne à mobilité réduite</td>
-    <td>Accès personne avec handicap sensoriel</td>
-  </tr>
-  <tr>
-    ## numero
-    <td>${installation[0]}</td> 
-    ## CP
-    <td>${installation[1]}</td> 
-    ## Commune
-    <td>${installation[2]}</td> 
-    ## num rue
-    <td>${installation[3]}</td> 
-    ## Nom rue
-    <td>${installation[4]}</td> 
-    ## acces hand
-    <td>${installation[7]}</td> 
-    ## acces mob red
-    <td>${installation[8]}</td> 
-    ## acces mob sens
-    <td>${installation[9]}</td>
-  </tr>
-</table>
+<div class="tuple_installation" style="border: 1px black solid; margin-right: auto">
+  <table>
+    <tr>
+      <td style="font-weight: bold"># ${installation[0][0]}</td>
+    </tr>
+    <tr> 
+      <td>Adresse : ${installation[0][1]}</td>
+    </tr>
+    <tr>  
+      ##On omet longitude et latitude (inutile en tant que tel..)
+      <td>Accès handicapés : ${installation[0][4]}</td>
+    </tr>
+    <tr>
+      <td>Accès personne à mobilité réduite : ${installation[0][5]}</td>
+    </tr>
+    <tr>
+      <td>Accès personne avec handicap sensoriel : ${installation[0][6]}</td>
+    </tr>
+    % if installation[0][7] != None:
+    <tr>
+      <td>---------</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold">Equipements associés</td>
+    </tr>
+    % for i in range(0,len(installation)):
+    <tr>
+      <td style="font-weight: bold"># ${installation[i][7]}</td>
+    </tr>
+    <tr>
+      <td>${installation[i][8]}</td>
+      % if installation[i][10] != None:
+      <td>Activités associées : 
+	${installation[i][10]}
+      </td>
+      % endif
+    </tr>
+    % endfor
+    % endif
+  </table>
 </div>
 
 

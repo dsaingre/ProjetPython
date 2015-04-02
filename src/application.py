@@ -1,11 +1,18 @@
-# ProjetPython main application 
+# Content : ProjetPython main application 
+# This application is used to simplify database management 
+# Author : Dimitri SAINGRE
 
 import argparse
-from db.Database import Database as DB
-from util.Serializer import Serializer as Seri
+from dao.database import Database as DB
+from util.serializer import Serializer as Seri
 from progressbar.progressbar import ProgressBar
 
+
 def create_table(table_name, db_path):
+    """
+    This fonction is used to create one of the table (Installation/Equipment/Activity) in the database.
+    It needs the table name and the database path.
+    """
     db = DB(db_path)
     if table_name == "Installation":
         db.creation_table_installation()
@@ -16,6 +23,10 @@ def create_table(table_name, db_path):
     db.disconnect(True)
 
 def insertion_json_file(table_name, db_path, json_file):
+    """
+    This function is used to unserialize a json file and to insert the content into a table
+    It needs the table name, the database path and the json path
+    """
     db = DB(db_path)
     progress = ProgressBar()
     s = Seri()
@@ -34,6 +45,10 @@ def insertion_json_file(table_name, db_path, json_file):
     db.disconnect(True)
 
 def read_database(table_name, db_path):
+    """
+    This function is used to display all elements in a table
+    It needs the table name and the path to the database
+    """
     db = DB(db_path)
     if table_name == "Installation":
         res = db.read_installation()

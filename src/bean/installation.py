@@ -15,15 +15,19 @@ class Installation(object):
         Constructor with 11 parameters
         """
         self.install_num = install_num
-        self.postal_code = postal_code
-        self.town_name = town_name
-        self.street_num = street_num
-        self.street_name = street_name
+        self.address = self.constr_address([street_num,street_name,postal_code,town_name])
         self.longitude = longitude
         self.latitude = latitude
         self.no_access_arrang = no_access_arrang
         self.access_low_mob_hand = access_low_mob_hand
         self.access_sens_hand = access_sens_hand
+
+    def constr_address(self,array):
+        """
+        Method used for the construction of an adress (string) from an array which contain all adress elements
+        return a string containing the adress
+        """
+        return " ".join(list(filter(lambda x: x != None, array)))
 
     def __str__(self):
         return "Installation num : "+self.install_num

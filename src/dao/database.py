@@ -13,8 +13,11 @@ class Database:
         Constructor of Database class.
         Path : String -  path to the database file
         """
-        self.conn = sqlite3.connect(path)
-        self.c = self.conn.cursor()
+        try:
+            self.conn = sqlite3.connect(path)
+            self.c = self.conn.cursor()
+        except sqlite3.OperationalError as e:
+            print("An error as occured : {}".format(e))
 
     def disconnect(self, commit):
         """
@@ -31,9 +34,8 @@ class Database:
         """
         self.c.execute('''DROP TABLE IF EXISTS Installation''')
         self.c.execute('''CREATE TABLE Installation (install_num TEXT PRIMARY KEY,
-        install_name TEXT, postal_code TEXT, town_name TEXT, street_num TEXT, 
-        street_name TEXT, longitude REAL, latitude REAL, no_access_arrang TEXT, 
-        access_low_mob_hand TEXT)''')
+        address TEXT, longitude REAL, latitude REAL, no_access_arrang TEXT, 
+        access_low_mob_hand TEXT, access_sens_hand TEXT)''')
     
     def creation_table_activity(self):
         """
@@ -57,16 +59,13 @@ class Database:
         inst : Installation - The object to insert
         """
         self.c.execute('''INSERT INTO Installation VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",
-        \"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\")'''.format(inst.install_num,
-                                                           inst.postal_code,
-                                                           inst.town_name,
-                                                           inst.street_num,
-                                                           inst.street_name,
-                                                           inst.longitude,
-                                                           inst.latitude,
-                                                           inst.no_access_arrang,
-                                                           inst.access_low_mob_hand,
-                                                           inst.access_sens_hand))
+        \"{5}\",\"{6}\")'''.format(inst.install_num,
+                                   inst.address,
+                                   inst.longitude,
+                                   inst.latitude,
+                                   inst.no_access_arrang,
+                                   inst.access_low_mob_hand,
+                                   inst.access_sens_hand))
 
 
     def insertion_activity(self, act):
@@ -124,10 +123,17 @@ class Database:
         return res.fetchall()
 
 
-    def select_installation_tuple_from_pk(self, key):
+    def select_all_from_install_pk(self, key):
         """
-        Method used to select a tuple from Installation with the primary key
-        Return a tuple from Installation table
+        Method used to select all installations and associate equipments from installation primary key
+        Return an array containing installations and equipment
         """
-        res = self.c.execute('''SELECT * FROM Installation WHERE install_num={}'''.format(key))
-        return res.fetchone()
+        try:
+            res = self.c.execute(
+                '''SELECT * FROM Installation 
+                LEFT JOIN Equipment ON Installation.install_num=Equipment.install_num 
+                LEFT JOIN Activity ON Equipment.eq_num=Activity.eq_num 
+                WHERE Installation.install_num={}'''.format(key))
+            return res.fetchall()
+        except sqlite3.OperationalError as e:
+            print("An error with database as occured : {}".format(e))
