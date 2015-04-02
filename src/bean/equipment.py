@@ -16,4 +16,4 @@ class Equipment :
         self.install_num = install_num
 
     def __str__(self):
-        return "Equipment num :"+self.eq_number
+        return "Equipment num : "+self.eq_num

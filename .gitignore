@@ -1,11 +1,15 @@
 ### gitignore ProjetPython ###
 
 # Data folder and useless folders
+DB/
 data/
 mako/
 cherrypy/
 __pycache__/
 
+#unit test file
+unitTest.py
+DB_test.db
 
 # garbage 
 *.py~

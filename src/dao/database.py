@@ -58,35 +58,44 @@ class Database:
         Method used to insert an Installation object into the DB
         inst : Installation - The object to insert
         """
-        self.c.execute('''INSERT INTO Installation VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",
-        \"{5}\",\"{6}\")'''.format(inst.install_num,
-                                   inst.address,
-                                   inst.longitude,
-                                   inst.latitude,
-                                   inst.no_access_arrang,
-                                   inst.access_low_mob_hand,
-                                   inst.access_sens_hand))
+        try:
+            self.c.execute('''INSERT INTO Installation VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",
+            \"{5}\",\"{6}\")'''.format(inst.install_num,
+                                       inst.address,
+                                       inst.longitude,
+                                       inst.latitude,
+                                       inst.no_access_arrang,
+                                       inst.access_low_mob_hand,
+                                       inst.access_sens_hand))
+        except AttributeError as e:
+            print("An error as occured ({}) nothing has been done".format(e))
 
-
+        
     def insertion_activity(self, act):
         """
         Method used to insert an Activity object into the DB
         act : Activity - The object to insert
         """
-        self.c.execute('''INSERT INTO Activity VALUES(\"{0}\",\"{1}\",
-        \"{2}\")'''.format(act.act_code,
-                           act.act_name,
-                           act.eq_num))
+        try:
+            self.c.execute('''INSERT INTO Activity VALUES(\"{0}\",\"{1}\",
+            \"{2}\")'''.format(act.act_code,
+                               act.act_name,
+                               act.eq_num))
+        except AttributeError as e:
+            print("An error as occured ({}) nothing has been done".format(e))
 
     def insertion_equipment(self, eq):
         """
         Method used to insert an Equipment object into the DB
         equ : Equipment - The object to insert
         """
-        self.c.execute('''INSERT INTO Equipment VALUES (\"{0}\", \"{1}\", 
-        \"{2}\")'''.format(eq.eq_num,
-                           eq.eq_name,
-                           eq.install_num))
+        try:
+            self.c.execute('''INSERT INTO Equipment VALUES (\"{0}\", \"{1}\", 
+            \"{2}\")'''.format(eq.eq_num,
+                               eq.eq_name,
+                               eq.install_num))
+        except AttributeError as e:
+            print("An error as occured ({}) nothing has been done".format(e))
 
 
     def read_installation(self):
@@ -94,34 +103,52 @@ class Database:
         Method used to select all elements in Installation table.
         Return an array with Installation object
         """
-        res = self.c.execute('''SELECT * FROM Installation''')
-        return res.fetchall() 
+        try:
+            res = self.c.execute('''SELECT * FROM Installation''')
+            return res.fetchall()
+        except sqlite3.OperationalError as e:
+            print("An error with database as occured : {}".format(e))
+            res = [None, None, None, None, None, None, None]
+            return res
 
     def read_equipment(self):
         """
         Method used to select all elements in Equipment table.
         Return an array with Equipment object
         """
-        res = self.c.execute('''SELECT * FROM Equipment''')
-        return res.fetchall()
+        try:
+            res = self.c.execute('''SELECT * FROM Equipment''')
+            return res.fetchall()
+        except sqlite3.OperationalError as e:
+            print("An error with database as occured : {}".format(e))
+            res = [None, None, None]
+            return res
 
     def read_activity(self):
         """
         Method used to select all elements in Activity table
         Return an array with Activity object
         """
-        res = self.c.execute('''SELECT * FROM Activity''')
-        return res.fetchall()
-
+        try:
+            res = self.c.execute('''SELECT * FROM Activity''')
+            return res.fetchall()
+        except sqlite3.OperationalError as e:
+            print("An error with database as occured : {}".format(e))
+            res = [None, None, None]
+            return res
 
     def attribute_installation_to_array(self,attribute):
         """
         Method used to obtain an array which contain all elements for a given attribute
         Return an array with all the elements for the attribute given in parameters
         """
-        res = self.c.execute('''SELECT {} FROM Installation'''.format(attribute))
-        return res.fetchall()
-
+        try:
+            res = self.c.execute('''SELECT {} FROM Installation'''.format(attribute))
+            return res.fetchall()
+        except sqlite3.OperationalError as e:
+            print("An error with database as occured : {}".format(e))
+            res = [None, None, None, None, None, None, None]
+            return res
 
     def select_all_from_install_pk(self, key):
         """
@@ -137,3 +164,5 @@ class Database:
             return res.fetchall()
         except sqlite3.OperationalError as e:
             print("An error with database as occured : {}".format(e))
+            res = [None,None,None,None,None,None,None,None,None,None,None,None,None]
+            return res

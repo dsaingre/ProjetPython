@@ -1,5 +1,7 @@
 # ProjetPython
-Projet Python IUT module M4105c par Dimitri Saingre
+=== FR (ENG under ===
+
+ProjetPython IUT module M4105c par Dimitri Saingre
 
 Professeur : SALIM Soufian
 
@@ -26,8 +28,26 @@ Les données sont présentes ici :
 - Utiliser la programmation orientée objet
 
 ##Modules complémentaires :
-Deux modules externes sont utilisés dans ce projet :
+Plusieurs modules externes sont utilisés dans ce projet :
 - [Cherrypy](https://github.com/cherrypy/cherrypy) : un framework web python
+- [Mako](http://www.makotemplates.org/) : Un moteur de template pour python
 - [ProgressBar](https://github.com/coagulant/progressbar-python3) : un utilitaire permettant de faire des barres de progression dans le terminal
 
+=== ENG ===
 
+ProjetPython - University of Nantes - module M4105c - By Dimitri Saingre
+
+The goal of this project is to develop an application to manage open data about sport facility in Les Pays De La Loire (France).
+
+Data can be found there :
+* [Installations] (http://data.paysdelaloire.fr/donnees/detail/equipements-sportifs-espaces-et-sites-de-pratiques-en-pays-de-la-loire-fiches-installations/)
+* [Equipements](http://data.paysdelaloire.fr/donnees/detail/equipements-sportifs-espaces-et-sites-de-pratiques-en-pays-de-la-loire-fiches-equipements/)
+* [Activités](http://data.paysdelaloire.fr/donnees/detail/equipements-sportifs-espaces-et-sites-de-pratiques-en-pays-de-la-loire-activites-des-fiches-equ/)
+
+The python version used is python 3.x
+
+Several python module has been used :
+- [Cherrypy](https://github.com/cherrypy/cherrypy) : a python web framework
+- [Mako](http://www.makotemplates.org/) : a template library for python
+- [ProgressBar](https://github.com/coagulant/progressbar-python3) : used to add progressbar in the app
+ 

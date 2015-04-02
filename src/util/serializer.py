@@ -26,39 +26,48 @@ class Serializer(object):
         """
         Method used to convert json file to Installation array
         """
-        with open(pathname) as json_file:
-            json_data = json.load(json_file)
-            for installation in json_data["data"]:
-                self.collection.append(Install(installation["InsNumeroInstall"],
-                                               installation["InsCodePostal"],
-                                               installation["ComLib"],
-                                               installation["InsNoVoie"],
-                                               installation["InsLibelleVoie"],
-                                               installation["Longitude"],
-                                               installation["Latitude"],
-                                               installation["InsAccessibiliteAucun"],
-                                               installation["InsAccessibiliteHandiMoteur"],
-                                               installation["InsAccessibiliteHandiSens"]))
+        try:
+            with open(pathname) as json_file:
+                json_data = json.load(json_file)
+                for installation in json_data["data"]:
+                    self.collection.append(Install(installation["InsNumeroInstall"],
+                                                   installation["InsCodePostal"],
+                                                   installation["ComLib"],
+                                                   installation["InsNoVoie"],
+                                                   installation["InsLibelleVoie"],
+                                                   installation["Longitude"],
+                                                   installation["Latitude"],
+                                                   installation["InsAccessibiliteAucun"],
+                                                   installation["InsAccessibiliteHandiMoteur"],
+                                                   installation["InsAccessibiliteHandiSens"]))
+        except FileNotFoundError as e:
+            print("An error as occured ({}), nothing as been done".format(e))
 
     def unserialize_json_activity(self, pathname):
         """
         Method used to convert json file to Activity array
         """
-        with open(pathname) as json_file:
-            json_data = json.load(json_file)
-            for activity in json_data["data"]:
-                self.collection.append(Acty(activity["ActCode"],
-                                            activity["ActLib"],
-                                            activity["EquipementId"]))
+        try:
+            with open(pathname) as json_file:
+                json_data = json.load(json_file)
+                for activity in json_data["data"]:
+                    self.collection.append(Acty(activity["ActCode"],
+                                                activity["ActLib"],
+                                                activity["EquipementId"]))
+        except FileNotFoundError as e:
+            print("An error as occured ({}), nothing as been done".format(e))
 
 
     def unserialize_json_equipment(self, pathname):
         """
         Method used to convert json file to Equipment array
         """
-        with open(pathname) as json_file:
-            json_data = json.load(json_file)
-            for equipment in json_data["data"]:
-                self.collection.append(Equip(equipment["EquipementId"],
-                                             equipment["EquNom"].replace('"',"'"),
-                                             equipment["InsNumeroInstall"]))
+        try:
+            with open(pathname) as json_file:
+                json_data = json.load(json_file)
+                for equipment in json_data["data"]:
+                    self.collection.append(Equip(equipment["EquipementId"],
+                                                 equipment["EquNom"].replace('"',"'"),
+                                                 equipment["InsNumeroInstall"]))
+        except FileNotFoundError as e:
+            print("An error as occured ({}), nothing as been done".format(e))
