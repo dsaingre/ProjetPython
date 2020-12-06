@@ -51,3 +51,4 @@ Several python module has been used :
 - [Mako](http://www.makotemplates.org/) : a template library for python
 - [ProgressBar](https://github.com/coagulant/progressbar-python3) : used to add progressbar in the app
  
+Modification du fichier readme.
